@@ -12,11 +12,12 @@ let dataArray = [
 // Find elements on the page for us to use in the logic
 let genreContainerElement = document.getElementById("genreContainer");
 
-// Create elements to add to the page via the logic
-let genresContainerList = document.createElement("ul");
+function renderData() {
+    // Create elements to add to the page via the logic
+    let genresContainerList = document.createElement("ul");
 
-// Do logic for each individual item in the array
-dataArray.forEach( (musicGenre) => {
+    // Do logic for each individual item in the array
+    dataArray.forEach( (musicGenre) => {
     console.log(musicGenre);
 
     // Verify what we are working with, just log it to see the data's value
@@ -29,6 +30,8 @@ dataArray.forEach( (musicGenre) => {
     // click on the button to remove the entry from the list
     // let removeButton = docutmentElement("button"); same as below
     removeButton.innerText = `Remove ${musicGenre}`;
+
+    removeButton.onClick = (() => removeGenreFromDataList(musicGenre));
     // Add the removeButton to the genre entry
     newGenreEntry.appendChild(removeButton);
 
@@ -38,9 +41,18 @@ dataArray.forEach( (musicGenre) => {
 
 });
 
-// Add the list container onto the actual HTML page
-genreContainerElement.appendChild(genresContainerList);
+    // Add the list container onto the actual HTML page
+    genreContainerElement.appendChild(genresContainerList);
+}
 
 
+
+function removeGenreFromDataList (targetItemToRemove) {
+    // remove the target item from the dataArray
+    dataArray = dataArray.filter((musicGenre) => musicGenre != targetItemToRemove);
+
+    // After the filtering is done, re-render the page with the new array
+    renderData();
+}
 
 
