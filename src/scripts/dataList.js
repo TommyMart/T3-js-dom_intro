@@ -1,48 +1,63 @@
 
 // Declare data to use in the logic
 let dataArray = [
-    "techno",
-    "house",
-    "disco",
-    "ambient",
-    "funk", 
-    "soul"
+    "Techno",
+    "House",
+    "Disco",
+    "Ambient",
+    "Funk", 
+    "Soul",
+    "Hip-Hop",
+    "Nu Jazz",
+    "Jazz",
+    "Experimental",
+    "Punk",
+    "Folk",
+    "Kraut Rock"
 ]
 
 // Find elements on the page for us to use in the logic
-let genreContainerElement = document.getElementById("genreContainer");
+let genresContainerElement = document.getElementById("genresContainer");
 
-function renderData() {
+function renderData(){
+
+    // Clear any existing content
+    genresContainerElement.innerText = "";
+
     // Create elements to add to the page via the logic
     let genresContainerList = document.createElement("ul");
 
     // Do logic for each individual item in the array
-    dataArray.forEach( (musicGenre) => {
-    console.log(musicGenre);
+    dataArray.forEach((musicGenre) => {
 
-    // Verify what we are working with, just log it to see the data's value
-    newGenreEntry = document.createElement("li");
+        // Verify what we are working with, just log it to see the data's value 
+        console.log(musicGenre);
 
-    // Create new HTML element to help us format the data's value
-    newGenreEntry.innerText += musicGenre;
+        // Verify what we are working with, just log it to see the data's value
+        let newGenreEntry = document.createElement("li");
 
-    // add a button to each entry
-    // click on the button to remove the entry from the list
-    // let removeButton = docutmentElement("button"); same as below
-    removeButton.innerText = `Remove ${musicGenre}`;
+        // Create new HTML element to help us format the data's value
+        newGenreEntry.innerText += (musicGenre + " \n");
 
-    removeButton.onClick = (() => removeGenreFromDataList(musicGenre));
-    // Add the removeButton to the genre entry
-    newGenreEntry.appendChild(removeButton);
+        // Add a button to each entry
+        // click on the button to remove the entry from the list
+        let removeButton = document.createElement("button"); 
 
-    // add the nicely formatted element into the list container
-    genresContainerList.appendChild(newGenreEntry);
+        removeButton.innerText = `Remove ${musicGenre}`;
+
+        removeButton.onclick = (() => removeGenreFromDataList(musicGenre));
+
+        // Add the removeButton to the genre entry
+        newGenreEntry.appendChild(removeButton);
+
+        // add the nicely formatted element into the list container
+        genresContainerList.appendChild(newGenreEntry);
 
 
-});
+    });
 
     // Add the list container onto the actual HTML page
-    genreContainerElement.appendChild(genresContainerList);
+    genresContainerElement.appendChild(genresContainerList);
 }
 
 
